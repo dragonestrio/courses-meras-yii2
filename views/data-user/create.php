@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\DataUser */
 
-$this->title = 'Create Data User';
+$this->title = 'Create Data User/Admin';
 $this->params['breadcrumbs'][] = ['label' => 'Data User', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

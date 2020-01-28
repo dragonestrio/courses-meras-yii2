@@ -9,6 +9,9 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use kartik\mpdf\Pdf;
+use app\models\DataMahasiswa;
+use app\models\DataMahasiswaSearch;
 
 class SiteController extends Controller
 {
@@ -137,5 +140,55 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionReport() 
+    {
+        $model = new DataMahasiswa();
+        $content = $this->renderPartial('_reportMahasiswa',
+            ['model' => $model]);
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE,
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_LANDSCAPE,
+            'destination' => Pdf::DEST_BROWSER,
+            'content' => $content,
+            'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
+            'cssInline' => '.kv-heading-1{font-size:18px;}
+                            .th{background-color:red;}',
+            'options' => ['title' => 'Krajee Report Title'],
+            'methods' => [
+                'SetFooter'=>['Data Seluruh Mahasiswa {PAGENO}'],
+
+            ]
+        ]);
+        return $pdf->render();
+    }
+
+    public function actionReport2($id) 
+    {
+        $model= DataMahasiswa::findOne($id);
+        $searchModel = new DataMahasiswaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $content = $this->renderPartial('_reportMahasiswa2',
+        ['model' => $model,
+        'seachModel' => $searchModel,
+        'dataProvider' => $dataProvider]);
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE,
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_LANDSCAPE,
+            'destination' => Pdf::DEST_BROWSER,
+            'content' => $content,
+            'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
+            'cssInline' => '.kv-heading-1{font-size:18px;}
+                            .th{background-color:red;}',
+            'options' => ['title' => 'Krajee Report Title'],
+            'methods' => [
+                'SetFooter'=>['Data Seluruh Mahasiswa {PAGENO}'],
+
+            ]
+        ]);
+        return $pdf->render();
     }
 }

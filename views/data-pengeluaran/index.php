@@ -4,16 +4,16 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\DataKasSearch */
+/* @var $searchModel app\models\DataPengeluaranSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Dana Masuk';
+$this->title = 'Dana Keluar';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="data-kas-index">
+<div class="data-pengeluaran-index">
 
     <p>
-        <?= Html::a('Create Data Dana Masuk', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Data Dana Keluar', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -24,10 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_kas',
+            'id_pengeluaran',
             'nim',
-            'setor',
-            'tgl_setor',
+            'jumlah',
+            'keterangan:ntext',
+            'timestamp',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

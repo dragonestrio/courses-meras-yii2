@@ -2,10 +2,12 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Yii Framework Marvind';
+$this->title = 'MERAS';
 ?>
 <div class="site-index">
+<br style="margin-top: 10%;">
 <center>
-    <h3>Let's begin with Yii Framework</h3>
+    <h1>Halo!</h1>
+    <h3>Ini adalah applikasi media sarana untuk sekolah agar mudah mengelola berbagai kegiatan yang dibutuhkan.</h3>
 </center>
 </div>

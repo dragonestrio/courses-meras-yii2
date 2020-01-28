@@ -7,14 +7,14 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\DataUserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Data User';
+$this->title = 'Data User & Admin';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="data-user-index">
 
 
     <p>
-        <?= Html::a('Create Data User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Data User/Admin', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

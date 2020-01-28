@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2019 at 03:23 PM
+-- Generation Time: Jan 28, 2020 at 08:35 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -44,6 +44,28 @@ INSERT INTO `absensi` (`id`, `date`, `nim`, `nama`, `status`) VALUES
 (5, '2019-12-18', 'G.211.19.0016', 'Satrio N W', 'Masuk'),
 (6, '2019-12-19', 'G.211.19.0021', 'Fendy N P', 'Masuk'),
 (7, '2019-12-20', 'G.231.17.0032', 'Qiswatul Ulfah', 'Masuk');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventaris`
+--
+
+CREATE TABLE `inventaris` (
+  `id_invent` varchar(50) NOT NULL,
+  `nama_brg` varchar(255) DEFAULT NULL,
+  `harga` float UNSIGNED ZEROFILL DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `timestamp` varchar(50) DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `inventaris`
+--
+
+INSERT INTO `inventaris` (`id_invent`, `nama_brg`, `harga`, `keterangan`, `timestamp`) VALUES
+('1', 'Laptop Acer V5-471', 000001500000, 'Laptop Acer V5-471\r\n\r\nSpesifikasi :\r\n- RAM 8GB\r\n- ROM 512GB\r\n- Processor Intel Core i3 2356M\r\n- Graphic Card Intel HD Graphic 3000', ''),
+('2', 'Apple Ipad Mini 1', 000002500000, 'Apple Ipad Mini 1\r\n\r\nSpesifikasi :\r\n- RAM 512MB\r\n- ROM 64GB\r\n- Processor Apple A5\r\n- Graphic Card PowerVR SGX543MP2', '');
 
 -- --------------------------------------------------------
 
@@ -94,6 +116,28 @@ INSERT INTO `mahasiswa` (`nim`, `nama`, `alamat`, `jurusan`, `semester`, `jenis_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pengeluaran`
+--
+
+CREATE TABLE `pengeluaran` (
+  `id_pengeluaran` varchar(255) NOT NULL,
+  `nim` varchar(50) NOT NULL,
+  `jumlah` float UNSIGNED ZEROFILL DEFAULT NULL,
+  `keterangan` text DEFAULT NULL,
+  `timestamp` varchar(255) DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengeluaran`
+--
+
+INSERT INTO `pengeluaran` (`id_pengeluaran`, `nim`, `jumlah`, `keterangan`, `timestamp`) VALUES
+('PENG012000001', 'G.211.19.0016', 000000500000, 'Dana Pembelian Aset', ''),
+('PENG012000002', 'G.211.19.0021', 000006400000, 'Biaya Pengembalian APBD', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -125,6 +169,12 @@ ALTER TABLE `absensi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `inventaris`
+--
+ALTER TABLE `inventaris`
+  ADD PRIMARY KEY (`id_invent`);
+
+--
 -- Indexes for table `kas`
 --
 ALTER TABLE `kas`
@@ -135,6 +185,12 @@ ALTER TABLE `kas`
 --
 ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`nim`);
+
+--
+-- Indexes for table `pengeluaran`
+--
+ALTER TABLE `pengeluaran`
+  ADD PRIMARY KEY (`id_pengeluaran`,`nim`);
 
 --
 -- Indexes for table `user`

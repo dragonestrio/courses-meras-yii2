@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Create Data Mahasiswa', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Cetak', ['/site/report'], ['class' => 'btn btn-primary','target'=>'_blank']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -34,7 +35,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'agama',
             'kelas',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'attribute'=>'nim',
+                'label'=>'Opsi',
+                'filter'=>'',
+                'format'=>'raw',
+                'value' => function($model){
+                    return '<div class="btn-group">
+                        '.Html::a('<i class="fa fa-fw fa-eye"></i>', ['view', 'id' => $model->nim], ['class' => 'btn btn-info btn-sm']).'
+                        '.Html::a('<i class="fa fa-fw fa-file"></i>', ['/site/report2', 'id' => $model->nim], ['class' => 'btn btn-success btn-sm']).'
+                        '.Html::a('<i class="fa fa-fw fa-edit"></i>', ['update', 'id' => $model->nim], ['class' => 'btn btn-warning btn-sm']).'
+                        '.Html::a('<i class="fa fa-fw fa-trash"></i>', ['delete', 'id' => $model->nim], ['class' => 'btn btn-danger btn-sm']).'
+                    </div>';
+                },
+            ],
         ],
     ]); ?>
 
